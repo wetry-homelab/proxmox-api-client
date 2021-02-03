@@ -1,11 +1,14 @@
-﻿using System;
+﻿using ProxmoxVEAPI.Client.Core;
+using System;
 using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace ProxmoxVEAPI.Client
 {
     public class BaseClient
     {
-        public HttpClient GetHttpClient()
+        protected HttpClient GetHttpClient()
         {
             var client = new HttpClient()
             {
@@ -13,9 +16,26 @@ namespace ProxmoxVEAPI.Client
             };
 
             client.DefaultRequestHeaders.Remove("Authorization");
-            client.DefaultRequestHeaders.Add("Authorization", ConfigureClient.AccessToken);
+            client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", ConfigureClient.AccessToken);
 
             return client;
+        }
+
+        protected async Task<T[]> GetAsync<T>(string uri)
+        {
+            var client = GetHttpClient();
+
+            var httpResponse = await client.GetAsync(uri);
+            httpResponse.EnsureSuccessStatusCode();
+
+            var response = ExtractResponse<T>(await httpResponse.Content.ReadAsStringAsync());
+
+            return response.Data;
+        }
+
+        protected BasicProxmoxResponse<T> ExtractResponse<T>(string content)
+        {
+            return JsonSerializer.Deserialize<BasicProxmoxResponse<T>>(content);
         }
     }
 }
