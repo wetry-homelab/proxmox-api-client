@@ -38,7 +38,7 @@ namespace ProxmoxVEAPI.Client.Contracts.Response
         public string NodeName { get; set; }
 
         [JsonPropertyName("cpu")]
-        public int Cpu { get; set; }
+        public double Cpu { get; set; }
 
         [JsonPropertyName("maxmem")]
         public long MaxMemory { get; set; }
