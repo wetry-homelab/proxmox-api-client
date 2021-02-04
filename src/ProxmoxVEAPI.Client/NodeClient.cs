@@ -15,7 +15,7 @@ namespace ProxmoxVEAPI.Client
 
         public Task<NodeStatus[]> GetNodeStatusAsync(string nodeName)
         {
-            return GetAsync<NodeStatus>($"{GetNodesListUri}/{nodeName}/status");
+            return GetAsync<NodeStatus>($"{GetNodeStatusUri}/{nodeName}/status");
         }
     }
 }
