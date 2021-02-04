@@ -27,7 +27,7 @@ steps:
   displayName: "DotNet pack"
   inputs:
     command: 'pack'
-    packagesToPack: '**/Infrastructure.Contracts.csproj'
+    packagesToPack: '**/ProxmoxVEAPI.Client.csproj'
     includesymbols: true
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '1'
