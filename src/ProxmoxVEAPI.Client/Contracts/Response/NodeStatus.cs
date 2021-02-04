@@ -18,5 +18,14 @@ namespace ProxmoxVEAPI.Client.Contracts.Response
 
         [JsonPropertyName("cpuinfo")]
         public CpuInfo CpuInfo { get; set; }
+
+        [JsonPropertyName("memory")]
+        public Memory Memory { get; set; }
+
+        [JsonPropertyName("swap")]
+        public Memory Swap { get; set; }
+
+        [JsonPropertyName("rootfs")]
+        public Disk RootFs { get; set; }
     }
 }
