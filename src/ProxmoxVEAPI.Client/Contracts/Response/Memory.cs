@@ -5,12 +5,12 @@ namespace ProxmoxVEAPI.Client.Contracts.Response
     public class Memory
     {
         [JsonPropertyName("total")]
-        public int Total { get; set; }
+        public long Total { get; set; }
 
         [JsonPropertyName("free")]
-        public int Free { get; set; }
+        public long Free { get; set; }
 
         [JsonPropertyName("used")]
-        public int Used { get; set; }
+        public long Used { get; set; }
     }
 }

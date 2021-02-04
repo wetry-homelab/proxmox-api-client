@@ -13,6 +13,7 @@ namespace Debugger
             Console.WriteLine("Get nodes.");
             var nodeClient = new NodeClient();
             var nodes = await nodeClient.GetNodesAsync();
+            var nodeDetails = await nodeClient.GetNodeStatusAsync("Homelab");
 
             Console.WriteLine("Get clusters.");
             var clusterClient = new ClusterClient();

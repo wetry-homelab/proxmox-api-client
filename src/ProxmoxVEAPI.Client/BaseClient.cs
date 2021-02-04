@@ -33,9 +33,26 @@ namespace ProxmoxVEAPI.Client
             return response.Data;
         }
 
+        protected async Task<T> GetOneAsync<T>(string uri)
+        {
+            var client = GetHttpClient();
+
+            var httpResponse = await client.GetAsync(uri);
+            httpResponse.EnsureSuccessStatusCode();
+
+            var response = ExtractSingleResponse<T>(await httpResponse.Content.ReadAsStringAsync());
+
+            return response.Data;
+        }
+
         protected BasicProxmoxResponse<T> ExtractResponse<T>(string content)
         {
             return JsonSerializer.Deserialize<BasicProxmoxResponse<T>>(content);
+        }
+
+        protected BasicProxmoxSingleResponse<T> ExtractSingleResponse<T>(string content)
+        {
+            return JsonSerializer.Deserialize<BasicProxmoxSingleResponse<T>>(content);
         }
     }
 }

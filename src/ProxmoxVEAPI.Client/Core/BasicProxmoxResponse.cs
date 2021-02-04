@@ -7,4 +7,10 @@ namespace ProxmoxVEAPI.Client.Core
         [JsonPropertyName("data")]
         public T[] Data { get; set; }
     }
+
+    public class BasicProxmoxSingleResponse<T>
+    {
+        [JsonPropertyName("data")]
+        public T Data { get; set; }
+    }
 }
