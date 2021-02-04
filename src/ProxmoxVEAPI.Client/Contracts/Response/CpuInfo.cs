@@ -5,13 +5,13 @@ namespace ProxmoxVEAPI.Client.Contracts.Response
     public class CpuInfo
     {
         [JsonPropertyName("mhz")]
-        public string Mhz { get; set; }
+        public double Mhz { get; set; }
 
         [JsonPropertyName("model")]
         public string Model { get; set; }
 
         [JsonPropertyName("hvm")]
-        public string Hvm { get; set; }
+        public bool Hvm { get; set; }
 
         [JsonPropertyName("cores")]
         public int Cores { get; set; }
