@@ -1,6 +1,7 @@
 ﻿using ProxmoxVEAPI.Client.Core;
 using System;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -43,6 +44,19 @@ namespace ProxmoxVEAPI.Client
             var response = ExtractSingleResponse<T>(await httpResponse.Content.ReadAsStringAsync());
 
             return response.Data;
+        }
+
+        protected async Task<bool> PostAsSuccessAsync(string uri, object data)
+        {
+            var client = GetHttpClient();
+            var httpResponse = await client.PostAsync(uri, SerializeBody(data));
+
+            return httpResponse.IsSuccessStatusCode;
+        }
+
+        private HttpContent SerializeBody(object data)
+        {
+            return new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json");
         }
 
         protected BasicProxmoxResponse<T> ExtractResponse<T>(string content)
