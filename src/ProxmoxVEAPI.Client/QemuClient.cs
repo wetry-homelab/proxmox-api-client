@@ -10,5 +10,10 @@ namespace ProxmoxVEAPI.Client
         {
             return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status", null);
         }
+
+        public Task<bool> DeleteQemu(string nodeId, int vmId)
+        {
+            return DeleteAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}");
+        }
     }
 }

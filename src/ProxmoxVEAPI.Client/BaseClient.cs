@@ -54,6 +54,14 @@ namespace ProxmoxVEAPI.Client
             return httpResponse.IsSuccessStatusCode;
         }
 
+        protected async Task<bool> DeleteAsSuccessAsync(string uri)
+        {
+            var client = GetHttpClient();
+            var httpResponse = await client.DeleteAsync(uri);
+
+            return httpResponse.IsSuccessStatusCode;
+        }
+
         private HttpContent SerializeBody(object data)
         {
             return new StringContent(JsonSerializer.Serialize(data), Encoding.UTF8, "application/json");
