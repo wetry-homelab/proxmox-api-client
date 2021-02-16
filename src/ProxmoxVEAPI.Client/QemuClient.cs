@@ -18,22 +18,22 @@ namespace ProxmoxVEAPI.Client
 
         public Task<bool> StopQemu(string nodeId, int vmId)
         {
-            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/stop", null);
+            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/stop", new { });
         }
 
         public Task<bool> ShutdownQemu(string nodeId, int vmId)
         {
-            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/shutdown", null);
+            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/shutdown", new { });
         }
 
         public Task<bool> ResumeQemu(string nodeId, int vmId)
         {
-            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/resume", null);
+            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/resume", new { });
         }
 
         public Task<bool> StartQemu(string nodeId, int vmId)
         {
-            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/start", null);
+            return PostAsSuccessAsync($"{BaseQemuUri}/{nodeId}/qemu/{vmId}/status/start", new { });
         }
     }
 }

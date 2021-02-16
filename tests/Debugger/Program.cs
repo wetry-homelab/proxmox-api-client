@@ -18,6 +18,11 @@ namespace Debugger
             Console.WriteLine("Get clusters.");
             var clusterClient = new ClusterClient();
             var clusterStatus = await clusterClient.GetClusterStatus();
+
+            Console.WriteLine("QEMU Status.");
+            var qemuClient = new QemuClient();
+            var qemuStopped = await qemuClient.StopQemu("Homelab", 3002);
+            var qemuDeleted = await qemuClient.DeleteQemu("Homelab", 3002);
         }
     }
 }
