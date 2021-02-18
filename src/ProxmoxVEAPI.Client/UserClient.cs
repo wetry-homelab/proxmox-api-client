@@ -11,7 +11,7 @@ namespace ProxmoxVEAPI.Client
 
         public Task<bool> AuthenticateUser(AuthenticateContractRequest request)
         {
-            return PostAsSuccessAsync(GetTicketUri, request);
+            return PostAsSuccessWithoutTokenAsync(GetTicketUri, request);
         }
 
         public Task<User[]> GetUsers()

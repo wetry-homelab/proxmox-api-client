@@ -54,6 +54,15 @@ namespace ProxmoxVEAPI.Client
             return httpResponse.IsSuccessStatusCode;
         }
 
+        protected async Task<bool> PostAsSuccessWithoutTokenAsync(string uri, object data)
+        {
+            var client = GetHttpClient();
+            client.DefaultRequestHeaders.Clear();
+            var httpResponse = await client.PostAsync(uri, SerializeBody(data));
+
+            return httpResponse.IsSuccessStatusCode;
+        }
+
         protected async Task<bool> DeleteAsSuccessAsync(string uri)
         {
             var client = GetHttpClient();
